@@ -1,0 +1,43 @@
+<!-- login.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Americanoshh</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+ <div class="login-container">
+    <a href="index.html">
+      <img src="logo.png" alt="Logo Americanos" class="logo">
+    </a>
+
+    <div class="form-box">
+      <div class="tabs">
+        <button class="tab active" onclick="showForm('login')">Ingresar</button>
+        <button class="tab" onclick="showForm('register')">Registrarse</button>
+      </div>
+
+      <form id="login" class="form active" onsubmit="manejarLogin(event)">
+        <h2>Bienvenidos</h2>
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Contraseña" minlength="8" required>
+        <button type="submit" class="btn">Ingresar</button>
+        <p class="link">¿No tienes cuenta? <span onclick="showForm('register')">Regístrate aquí</span></p>
+        <p class="link">¿Olvidaste tu contraseña?</p>
+      </form>
+
+      <form id="register" class="form" onsubmit="manejarRegistro(event)">
+        <h2>Crear cuenta</h2>
+        <input type="text" placeholder="Nombre" required>
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Contraseña" minlength="8" required>
+        <button type="submit" class="btn">Registrarse</button>
+        <p class="link" onclick="showForm('login')">¿Ya tienes cuenta? Inicia sesión</p>
+      </form>
+    </div>
+  </div>
+
+  <script src="login.js"></script>
+</body>
+</html>

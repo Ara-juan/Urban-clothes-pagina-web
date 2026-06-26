@@ -1,0 +1,345 @@
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background: url('fondo.png') no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0,0,0,0.8);
+  padding: 15px 30px;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.logo img {
+  width: 120px;       
+  height: auto;       
+  display: block;     
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.nav-links li a:hover {
+  color: #007BFF;
+}
+
+.search-bar {
+  display: flex;
+  gap: 8px;
+}
+
+.search-bar input {
+  padding: 6px;
+  border-radius: 4px;
+  border: none;
+}
+
+.search-bar button {
+  background: #007BFF;
+  border: none;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.search-bar button:hover {
+  background: #0056b3;
+}
+
+/* Catálogo y Carrusel */
+.catalog {
+  padding: 40px;
+  max-width: 1200px; 
+  margin: 0 auto;    
+}
+
+.catalog h2 {
+  margin-bottom: 20px;
+  border-bottom: 2px solid #007BFF;
+  display: inline-block;
+}
+
+/* Contenedor relativo para posicionar las flechas */
+.carousel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  width: 100%;
+}
+
+/* Contenedor de los productos */
+.products {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;       
+  scroll-behavior: smooth; 
+  padding: 10px 0;
+  width: 100%;
+}
+
+/* Oculta la barra de scroll */
+.products::-webkit-scrollbar {
+  display: none;
+}
+.products {
+  -ms-overflow-style: none;  
+  scrollbar-width: none;  
+}
+
+
+.card {
+  background: rgba(0,0,0,0.7);
+  border-radius: 10px;
+  padding: 15px;
+  /* calc(33.333% - 14px) divide el espacio en 3 partes iguales 
+     y descuenta una fracción del 'gap' (20px) para que encajen perfecto.
+  */
+  width: calc(33.333% - 14px); 
+  flex-shrink: 0; /* Evita que se deformen */
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.card h3 {
+  margin: 10px 0;
+}
+
+.price {
+  color: #00ffcc;
+  font-weight: bold;
+}
+
+.desc {
+  font-size: 14px;
+  color: #ccc;
+}
+
+/* Botones de las Flechas (Estilizadas y un poco más afuera) */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 123, 255, 0.8);
+  color: white;
+  border: none;
+  font-size: 24px;
+  padding: 15px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+  z-index: 10;
+  transition: background 0.3s;
+}
+
+.arrow:hover {
+  background: rgba(0, 86, 179, 1);
+}
+
+.left-arrow {
+  left: -40px; /* Se mueve un poco más a la izquierda para no tapar el producto */
+}
+
+.right-arrow {
+  right: -40px; /* Se mueve un poco más a la derecha */
+}
+
+
+/* --- ESTILOS DE LA VISTA DE DETALLE --- */
+
+/* Contenedor fondo oscuro transitable */
+.modal {
+  display: none; 
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Clase para activar la visualización mediante JS */
+.modal.show {
+  display: flex;
+  opacity: 1;
+}
+
+/* Caja de contenido central */
+.modal-content {
+  background: rgba(20, 20, 20, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 90%;
+  max-width: 950px;
+  padding: 40px;
+  border-radius: 4px;
+  position: relative;
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.7);
+}
+
+/* Botón de cerrar (X) */
+.close-modal {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  color: #aaa;
+  font-size: 35px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.close-modal:hover {
+  color: #007BFF;
+}
+
+/* Grid de dos columnas */
+.modal-body {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.modal-left, .modal-right {
+  flex: 1;
+  min-width: 300px;
+}
+
+/* Contenedor de la Imagen */
+.image-container {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 10px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-container img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* Textos e Información */
+.urban-title {
+  font-family: 'Times New Roman', Times, serif; /* Reemplazar por tipografía gótica si se desea */
+  font-size: 32px;
+  margin-top: 0;
+  margin-bottom: 5px;
+  letter-spacing: 1px;
+}
+
+.modal-stock {
+  color: #ccc;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.modal-price {
+  font-size: 26px;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 25px;
+}
+
+.urban-subtitle {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+
+/* Selector de Tallas */
+.sizes-grid {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.size-btn {
+  background: rgba(255, 255, 255, 0.25);
+  border: none;
+  color: #fff;
+  width: 42px;
+  height: 38px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.size-btn:hover {
+  background: #0040ff;
+}
+
+/* Botón de compra */
+.btn-buy {
+  background: #0040ff;
+  border: none;
+  color: white;
+  padding: 14px 0;
+  width: 80%;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transform: skewX(-20deg); 
+  box-shadow: 0 4px 15px rgba(0, 64, 255, 0.4);
+  transition: background 0.3s, transform 0.2s;
+  margin-bottom: 30px;
+}
+
+.btn-buy:hover {
+  background: #0026b3;
+}
+
+/* Revierte el sesgo en el texto interno para que no se vea torcido */
+.btn-buy span {
+  display: block;
+  transform: skewX(20deg); 
+}
+
+/* Párrafo descriptivo de la marca */
+.modal-desc {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #dedede;
+  text-align: justify;
+}
+
+.card {
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+.card:hover {
+  transform: scale(1.02);
+}

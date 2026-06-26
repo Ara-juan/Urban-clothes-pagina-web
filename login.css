@@ -1,0 +1,87 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background: url('fondo.png') no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.login-container {
+  text-align: center;
+}
+
+.logo {
+  width: 150px;
+  margin-bottom: 20px;
+}
+
+.form-box {
+  background: rgba(0,0,0,0.7);
+  padding: 30px;
+  border-radius: 12px;
+  width: 300px;
+  margin: auto;
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.tab {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  background: gray;
+  color: white;
+  font-weight: bold;
+}
+
+.tab.active {
+  background: #007BFF;
+}
+
+.form {
+  display: none;
+}
+
+.form.active {
+  display: block;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 6px;
+}
+
+.btn {
+  width: 100%;
+  padding: 12px;
+  background: #007BFF;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #0056b3;
+}
+
+.link {
+  font-size: 14px;
+  margin-top: 10px;
+  cursor: pointer;
+  text-decoration: underline;
+}
