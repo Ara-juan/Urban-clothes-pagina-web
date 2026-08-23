@@ -1,0 +1,6 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "urban-clothes-backend/lib/postgresql-42.7.13.jar"
+    ]
+}
