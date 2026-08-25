@@ -1,9 +1,14 @@
-<!-- hombre.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Americanoshh - Catálogo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Americanoshh - Hombre</title>
+  
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+  
+  <!-- Estilos Personalizados -->
   <link rel="stylesheet" href="main.css">
 </head>
 <body>
@@ -11,7 +16,9 @@
   <!-- Barra de navegación -->
   <header>
     <nav class="navbar">
-      <div class="logo"><a href="acerca de.html"><img src="assets/logo.png"></a></div>
+      <div class="logo">
+        <a href="acerca de.html"><img src="assets/logo.png" alt="Logo Americanoshh"></a>
+      </div>
       <ul class="nav-links">
         <li><a href="hombre.html">Hombre</a></li>
         <li><a href="mujer.html">Mujer</a></li>
@@ -21,16 +28,18 @@
       </ul>
       <div class="search-bar">
         <input type="text" placeholder="Buscar productos...">
-        <button>🔍</button>
+        <button type="button">🔍</button>
       </div>
     </nav>
   </header>
 
-  <!-- Sección 1 -->
-  <section class="catalog">
-    <h2></h2>
+  <!-- Catálogo Hombre -->
+  <main class="catalog">
+    <h2>Colección Hombre</h2>
+
+    <!-- Sección 1 -->
     <div class="products">
-      <div class="card" data-desc="La camiseta adidas no es solo una prenda, es un manifiesto de rebeldía y autenticidad. Con su icónico logo Trefoil en un degradado vibrante de azul y rojo, transmite energía urbana y un espíritu desenfadado que conecta con quienes buscan diferenciarse. ">
+      <div class="card" data-desc="La camiseta adidas no es solo una prenda, es un manifiesto de rebeldía y autenticidad. Con su icónico logo Trefoil en un degradado vibrante de azul y rojo, transmite energía urbana y un espíritu desenfadado que conecta con quienes buscan diferenciarse.">
         <img src="assets/hombre/camiseta adidas.webp" alt="Camiseta adidas">
         <h3>Camiseta adidas</h3>
         <p class="price">$50.000</p>
@@ -49,21 +58,18 @@
         <p class="desc"></p>
       </div>
     </div>
-  </section>
 
-  <!-- Sección 2 -->
-  <section class="catalog">
-    <h2></h2>
+    <!-- Sección 2 -->
     <div class="products">
       <div class="card" data-desc="La camiseta paris urbana es un homenaje contemporáneo a la ciudad de la luz. Su tipografía audaz en naranja y los símbolos icónicos como la Torre Eiffel y la rueda de la fortuna se fusionan en un diseño que respira modernidad y cultura urbana.">
-        <img src="assets/hombre/camiseta paris urbana.webp" alt="paris urbana">
+        <img src="assets/hombre/camiseta paris urbana.webp" alt="Camiseta paris urbana">
         <h3>Camiseta paris urbana</h3>
         <p class="price">$60.000</p>
         <p class="desc"></p>
       </div>
       <div class="card" data-desc="La camiseta rosa human es un símbolo de fuerza y humildad. Con su rosa roja en el centro y la frase “STAY HUMBLE HUSTLE HARD”, transmite un mensaje poderoso: crecer sin olvidar la esencia, luchar sin perder la humanidad.">
-        <img src="assets/hombre/camiseta rosa 2.webp" alt="camiseta rosa human">
-        <h3>Camiseta ropa human</h3>
+        <img src="assets/hombre/camiseta rosa 2.webp" alt="Camiseta rosa human">
+        <h3>Camiseta rosa human</h3>
         <p class="price">$60.000</p>
         <p class="desc"></p>
       </div>
@@ -74,11 +80,8 @@
         <p class="desc"></p>
       </div>
     </div>
-  </section>
 
-  <!--sección 3-->
-  <section class="catalog">
-    <h2></h2>
+    <!-- Sección 3 -->
     <div class="products">
       <div class="card" data-desc="La camiseta till death es una declaración cruda y directa sobre la vida y la mortalidad. Su diseño con un esqueleto azul fumando y frases como “TILL DEATH” y “whether OR NOT” transmite una estética rebelde y desafiante, perfecta para quienes buscan un estilo que rompa esquemas.">
         <img src="assets/hombre/camiseta till death.webp" alt="Camiseta till death">
@@ -96,17 +99,14 @@
         <img src="assets/hombre/camiseta crust issue.webp" alt="Camisa crust issue">
         <h3>Camisa crust issue</h3>
         <p class="price">$60.000</p>
-        <p class="desc"></p> <!--lo dejo por el momento para cuando ponga algo tipo: es de algodon poliester 80% y cosas así-->
+        <p class="desc"></p>
       </div>
     </div>
-  </section>
 
-  <!--sección 4-->
-  <section class="catalog">
-    <h2></h2>
+    <!-- Sección 4 -->
     <div class="products">
       <div class="card" data-desc="La camiseta france es un tributo moderno a la identidad nacional reinterpretada desde la moda urbana. Con tipografía imponente y gráficos abstractos en azul, blanco y rojo, se convierte en un lienzo que mezcla orgullo cultural con estética contemporánea.">
-        <img src="assets/hombre/camiseta france.webp" alt="Camiseta frace">
+        <img src="assets/hombre/camiseta france.webp" alt="Camiseta france">
         <h3>Camiseta france</h3>
         <p class="price">$60.000</p>
         <p class="desc"></p>
@@ -124,11 +124,8 @@
         <p class="desc"></p>
       </div>
     </div>
-  </section>
 
-  <!--seccion 5-->
-  <section class="catalog">
-    <h2></h2>
+    <!-- Sección 5 -->
     <div class="products">
       <div class="card" data-desc="La camiseta monja es un retrato gráfico de irreverencia y autenticidad. Con ilustraciones en tonos rosados y violetas que acompañan frases como “DON’T CARE”, “MOOD” y “AUTHENTIC”, esta prenda se convierte en un manifiesto visual de actitud despreocupada y fuerza interior.">
         <img src="assets/hombre/camiseta monja.webp" alt="Camiseta monja">
@@ -144,17 +141,15 @@
       </div>
       <div class="card" data-desc="La camiseta sonrisa urbana es un estallido gráfico de irreverencia y estilo. Con su sonrisa naranja de ojos en “X”, coronada por la palabra “SMILE” en tipografía graffiti amarilla y rodeada de fuego y alambres de púas, esta prenda convierte la moda en un grito visual de rebeldía contemporánea.">
         <img src="assets/hombre/camiseta sonrisa urbana.webp" alt="Camisa sonrisa urbana">
-        <h3>Camisa Urbana Premium</h3>
+        <h3>Camisa Sonrisa Urbana</h3>
         <p class="price">$50.000</p>
         <p class="desc"></p>
       </div>
     </div>
-  </section>
+  </main>
 
-  </div>
- </section>
-
-<div id="product-modal" class="modal">
+  <!-- Modal Detalles del producto -->
+  <div id="product-modal" class="modal">
     <div class="modal-content">
       <span class="close-modal">&times;</span>
       <div class="modal-body">
@@ -170,15 +165,15 @@
           <div class="modal-sizes">
             <h3 class="urban-subtitle">Tallas</h3>
             <div class="sizes-grid">
-              <button class="size-btn">XS</button>
-              <button class="size-btn">S</button>
-              <button class="size-btn">M</button>
-              <button class="size-btn">L</button>
-              <button class="size-btn">XL</button>
+              <button type="button" class="size-btn">XS</button>
+              <button type="button" class="size-btn">S</button>
+              <button type="button" class="size-btn">M</button>
+              <button type="button" class="size-btn">L</button>
+              <button type="button" class="size-btn">XL</button>
             </div>
           </div>
-          <button class="btn-buy">
-            <span><a href="https://wa.me/573124363561">Compra Ahora</a></span>
+          <button type="button" class="btn-buy">
+            <span><a href="https://wa.me/573124363561" target="_blank" rel="noopener noreferrer">Compra Ahora</a></span>
           </button>
           <p id="modal-desc" class="modal-desc"></p>
         </div>
@@ -186,7 +181,10 @@
     </div>
   </div>
 
-
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Script Personalizado -->
   <script src="script.js"></script>
 </body>
 </html>

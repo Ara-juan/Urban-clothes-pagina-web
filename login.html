@@ -1,32 +1,40 @@
-<!-- login.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login - Americanoshh</title>
+
+  <!-- Bootstrap CSS 5.3.8 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+
+  <!-- Estilos Personalizados -->
   <link rel="stylesheet" href="login.css">
 </head>
 <body>
- <div class="login-container">
+
+  <div class="login-container">
     <a href="index.html">
-      <img src="assets/logo.png" alt="Logo Americanos" class="logo">
+      <img src="assets/logo.png" alt="Logo Americanoshh" class="logo">
     </a>
 
     <div class="form-box">
       <div class="tabs">
-        <button class="tab active" onclick="showForm('login')">Ingresar</button>
-        <button class="tab" onclick="showForm('register')">Registrarse</button>
+        <button type="button" class="tab active" onclick="showForm('login')">Ingresar</button>
+        <button type="button" class="tab" onclick="showForm('register')">Registrarse</button>
       </div>
 
+      <!-- Formulario de Iniciar Sesión -->
       <form id="login" class="form active" onsubmit="manejarLogin(event)">
         <h2>Bienvenidos</h2>
         <input type="email" placeholder="Email" required>
         <input type="password" placeholder="Contraseña" minlength="8" required>
         <button type="submit" class="btn">Ingresar</button>
         <p class="link">¿No tienes cuenta? <span onclick="showForm('register')">Regístrate aquí</span></p>
-        <p class="link">¿Olvidaste tu contraseña?</p>
+        <p class="link"><span>¿Olvidaste tu contraseña?</span></p>
       </form>
 
+      <!-- Formulario de Registro -->
       <form id="register" class="form" onsubmit="manejarRegistro(event)">
         <h2>Crear cuenta</h2>
         <input type="text" placeholder="Nombre" required>
@@ -38,6 +46,10 @@
     </div>
   </div>
 
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Script Personalizado -->
   <script src="login.js"></script>
 </body>
 </html>

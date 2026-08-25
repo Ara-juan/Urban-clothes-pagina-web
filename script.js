@@ -1,102 +1,103 @@
-// script.js
+/**
+ * Desplaza horizontalmente los productos de un carrusel
+ * @param {HTMLElement} button - El botón que disparó la función
+ * @param {number} direction - Dirección del scroll (1 para derecha, -1 para izquierda)
+ */
 function scrollCarousel(button, direction) {
-  // Encuentra el contenedor de productos de este carrusel específico
   const container = button.parentElement.querySelector('.products');
-  
-  // Detecta el ancho visible actual del contenedor (el espacio de los 3 productos)
-  const containerWidth = container.offsetWidth;
-  
-  // Multiplicamos el ancho total por la dirección (1 o -1)
-  // Restamos un pequeño porcentaje para que el scroll no sea tan brusco y quede alineado
-  const scrollAmount = containerWidth * direction;
-  
-  // Aplica el movimiento suave
-  container.scrollBy({
-    left: scrollAmount,
-    behavior: 'smooth'
-  });
+
+  if (container) {
+    const containerWidth = container.offsetWidth;
+    const scrollAmount = containerWidth * direction;
+
+    container.scrollBy({
+      left: scrollAmount,
+      behavior: 'smooth'
+    });
+  }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  // --- LÓGICA DE MODAL DE PRODUCTO ---
   const cards = document.querySelectorAll(".card");
   const modal = document.getElementById("product-modal");
   const closeModal = document.querySelector(".close-modal");
-  
-  // Elementos internos del modal
+
   const modalImg = document.getElementById("modal-img");
   const modalTitle = document.getElementById("modal-title");
   const modalPrice = document.getElementById("modal-price");
   const modalDesc = document.getElementById("modal-desc");
 
-  // Abrir modal al hacer clic en una tarjeta
-  cards.forEach(card => {
-    card.addEventListener("click", () => {
-      const imgUrl = card.querySelector("img").src;
-      const title = card.querySelector("h3").innerText;
-      const price = card.querySelector(".price").innerText;
-      
-      // Captura la descripción personalizada desde el atributo data-desc
-      // Si te olvidas de poner el atributo en alguna tarjeta, mostrará un texto por defecto
-      const descPersonalizada = card.getAttribute("data-desc") || "Este producto no cuenta con una descripción detallada todavía.";
+  // Abrir modal solo si el modal y sus elementos existen en el HTML
+  if (modal && modalImg && modalTitle && modalPrice && modalDesc) {
+    cards.forEach(card => {
+      card.addEventListener("click", () => {
+        const imgElement = card.querySelector("img");
+        const titleElement = card.querySelector("h3");
+        const priceElement = card.querySelector(".price");
 
-      // Asignar los valores capturados a los elementos del modal
-      modalImg.src = imgUrl;
-      modalTitle.innerText = title;
-      modalPrice.innerText = price;
-      modalDesc.innerText = descPersonalizada;
+        const imgUrl = imgElement ? imgElement.src : "";
+        const title = titleElement ? titleElement.innerText : "Producto";
+        const price = priceElement ? priceElement.innerText : "";
+        const descPersonalizada = card.getAttribute("data-desc") || "Este producto no cuenta con una descripción detallada todavía.";
 
-      // Mostrar el modal agregando la clase 'show'
-      modal.classList.add("show");
-    });
-  });
+        // Asignación de datos al modal
+        modalImg.src = imgUrl;
+        modalTitle.innerText = title;
+        modalPrice.innerText = price;
+        modalDesc.innerText = descPersonalizada;
 
-  // Cerrar modal al darle a la X
-  closeModal.addEventListener("click", () => {
-    modal.classList.remove("show");
-  });
-
-  // Cerrar modal si se hace clic afuera del recuadro del contenido
-  window.addEventListener("click", (e) => {
-    if (e.target === modal) {
-      modal.classList.remove("show");
-    }
-  });
-
-  // --- LÓGICA DE BÚSQUEDA LOCAL EN TIEMPO REAL ---
-const searchInput = document.querySelector(".search-bar input");
-
-if (searchInput) {
-  searchInput.addEventListener("input", (e) => {
-    const query = e.target.value.toLowerCase().trim();
-
-    // Recorremos cada sección del catálogo
-    document.querySelectorAll(".catalog").forEach((section) => {
-      let hasVisibleCards = false;
-
-      // Recorremos las tarjetas dentro de esta sección
-      section.querySelectorAll(".card").forEach((card) => {
-        const title = card.querySelector("h3") ? card.querySelector("h3").innerText.toLowerCase() : "";
-        const price = card.querySelector(".price") ? card.querySelector(".price").innerText.toLowerCase() : "";
-        const desc = card.getAttribute("data-desc") ? card.getAttribute("data-desc").toLowerCase() : "";
-
-        // Verificamos si la búsqueda coincide con el título, precio o descripción
-        const matches = title.includes(query) || price.includes(query) || desc.includes(query);
-
-        if (matches) {
-          card.style.display = ""; // Muestra la tarjeta si coincide
-          hasVisibleCards = true;
-        } else {
-          card.style.display = "none"; // Oculta la tarjeta si no coincide
-        }
+        // Mostrar el modal
+        modal.classList.add("show");
       });
+    });
 
-      // Si ninguna tarjeta coincide en esta sección, ocultamos toda la sección <section>
-      if (hasVisibleCards) {
-        section.style.display = "";
-      } else {
-        section.style.display = "none";
+    // Cerrar modal al presionar el botón de cierre (X)
+    if (closeModal) {
+      closeModal.addEventListener("click", () => {
+        modal.classList.remove("show");
+      });
+    }
+
+    // Cerrar modal al hacer clic en el fondo oscuro exterior
+    window.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.classList.remove("show");
       }
     });
-  });
-}
+  }
+
+  // --- LÓGICA DE BÚSQUEDA LOCAL EN TIEMPO REAL ---
+  const searchInput = document.querySelector(".search-bar input");
+
+  if (searchInput) {
+    searchInput.addEventListener("input", (e) => {
+      const query = e.target.value.toLowerCase().trim();
+
+      // Recorremos cada sección del catálogo
+      document.querySelectorAll(".catalog").forEach((section) => {
+        let hasVisibleCards = false;
+
+        // Recorremos las tarjetas dentro de esta sección
+        section.querySelectorAll(".card").forEach((card) => {
+          const title = card.querySelector("h3") ? card.querySelector("h3").innerText.toLowerCase() : "";
+          const price = card.querySelector(".price") ? card.querySelector(".price").innerText.toLowerCase() : "";
+          const desc = card.getAttribute("data-desc") ? card.getAttribute("data-desc").toLowerCase() : "";
+
+          // Verificamos si la búsqueda coincide con el título, precio o descripción
+          const matches = title.includes(query) || price.includes(query) || desc.includes(query);
+
+          if (matches) {
+            card.style.display = ""; // Muestra la tarjeta
+            hasVisibleCards = true;
+          } else {
+            card.style.display = "none"; // Oculta la tarjeta
+          }
+        });
+
+        // Oculta la sección completa si ninguna tarjeta coincide con el filtro
+        section.style.display = hasVisibleCards ? "" : "none";
+      });
+    });
+  }
 });

@@ -1,28 +1,55 @@
-// Función para cambiar entre pestañas
-    function showForm(formId) {
-      document.querySelectorAll('.form').forEach(f => f.classList.remove('active'));
-      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-      document.getElementById(formId).classList.add('active');
-      document.querySelector(`.tab[onclick="showForm('${formId}')"]`).classList.add('active');
-    }
+/**
+ * Alterna la visibilidad entre los formularios de Login y Registro
+ * @param {string} formId - ID del formulario a mostrar ('acceder' o 'registrarse')
+ */
+function showForm(formId) {
+  const forms = document.querySelectorAll('.form');
+  const tabs = document.querySelectorAll('.tab');
 
-    // Redirección al Main al ingresar con éxito
-    function manejarLogin(event) {
-      event.preventDefault(); 
-      // Si pasa las validaciones de HTML, redirige a main.html
-      window.location.href = 'main.html';
-    }
+  // Ocultar todos los formularios y desactivar pestañas
+  forms.forEach(form => form.classList.remove('active'));
+  tabs.forEach(tab => tab.classList.remove('active'));
 
-    // Redirección interna a la pestaña de Login al registrarse con éxito
-    function manejarRegistro(event) {
-      event.preventDefault();
-      
-      // Mensaje opcional para avisar al usuario que se registró con éxito
-      alert("¡Usuario registrado con éxito! Ahora puedes iniciar sesión.");
-      
-      // Limpia los campos del formulario de registro (buena práctica)
-      document.getElementById('register').reset();
-      
-      // Te lleva visualmente al formulario de Login
-      showForm('login');
+  // Activar el formulario seleccionado
+  const selectedForm = document.getElementById(formId);
+  if (selectedForm) {
+    selectedForm.classList.add('active');
+  }
+
+  // Activar la pestaña correspondiente según la función asociada a su onclick
+  tabs.forEach(tab => {
+    if (tab.getAttribute('onclick') && tab.getAttribute('onclick').includes(formId)) {
+      tab.classList.add('active');
     }
+  });
+}
+
+/**
+ * Procesa el inicio de sesión del usuario
+ * @param {Event} event - Evento del formulario
+ */
+function manejarLogin(event) {
+  event.preventDefault();
+
+  // Si pasa las validaciones HTML5 del formulario, redirige al catálogo principal
+  window.location.href = 'main.html';
+}
+
+/**
+ * Procesa el registro de un nuevo usuario
+ * @param {Event} event - Evento del formulario
+ */
+function manejarRegistro(event) {
+  event.preventDefault();
+
+  alert("¡Usuario registrado con éxito! Ahora puedes iniciar sesión.");
+
+  // Limpia los campos del formulario de registro
+  const registerForm = document.getElementById('register');
+  if (registerForm) {
+    registerForm.reset();
+  }
+
+  // Cambia automáticamente a la pestaña de Iniciar Sesión
+  showForm('login');
+}
