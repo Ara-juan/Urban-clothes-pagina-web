@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/productos")
-@CrossOrigin(origins = "*") // Permite peticiones desde el frontend HTML/JS
+@CrossOrigin(origins = "*") // Con esto podremos hacer peticiones
 public class ProductoController {
 
     @Autowired
