@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Catálogo - Americanoshh</title>
+    <style>
+        body { font-family: sans-serif; max-width: 600px; margin: 30px auto; padding: 20px; }
+        form { display: flex; flex-direction: column; gap: 10px; margin-bottom: 30px; }
+        input, select, button { padding: 8px; font-size: 14px; }
+        .card { border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; border-radius: 5px; }
+        .activo { color: green; font-weight: bold; }
+        .inactivo { color: red; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <h2>Registrar Producto (Bajo Demanda)</h2>
+    <form id="productoForm">
+        <input type="text" id="nombre" placeholder="Nombre de la prenda" required>
+        <input type="text" id="descripcion" placeholder="Descripción">
+        <input type="number" step="0.01" id="precio" placeholder="Precio ($)" required>
+        <input type="number" id="categoriaId" placeholder="ID Categoría" required>
+        
+        <label>
+            <input type="checkbox" id="activo" checked> Producto Activo en Catálogo
+        </label>
+        
+        <button type="submit">Guardar Producto (POST)</button>
+    </form>
+
+    <h2>Catálogo Actual (GET)</h2>
+    <button onclick="cargarProductos()">Cargar Productos Activos</button>
+    <div id="listaProductos" style="margin-top: 15px;"></div>
+
+    <script>
+        const API_URL = 'http://localhost:8080/api/productos';
+
+        // Petición POST: Guardar producto
+        document.getElementById('productoForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const producto = {
+                nombre: document.getElementById('nombre').value,
+                descripcion: document.getElementById('descripcion').value,
+                precio: parseFloat(document.getElementById('precio').value),
+                categoriaId: parseInt(document.getElementById('categoriaId').value),
+                activo: document.getElementById('activo').checked
+            };
+
+            const respuesta = await fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(producto)
+            });
+
+            if (respuesta.ok) {
+                alert('Producto registrado exitosamente');
+                document.getElementById('productoForm').reset();
+                cargarProductos();
+            }
+        });
+
+        // Petición GET: Consultar productos activos
+        async function cargarProductos() {
+            const respuesta = await fetch(`${API_URL}?soloActivos=true`);
+            const productos = await respuesta.json();
+            
+            const contenedor = document.getElementById('listaProductos');
+            contenedor.innerHTML = '';
+
+            productos.forEach(p => {
+                contenedor.innerHTML += `
+                    <div class="card">
+                        <h3>${p.nombre} - $${p.precio}</h3>
+                        <p>${p.descripcion}</p>
+                        <p>Estado: <span class="${p.activo ? 'activo' : 'inactivo'}">${p.activo ? 'Disponible bajo demanda' : 'Inactivo'}</span></p>
+                    </div>
+                `;
+            });
+        }
+
+        // Cargar productos al abrir la página
+        cargarProductos();
+    </script>
+</body>
+</html>
